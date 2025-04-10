@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página con Botones</title>
+    <title>Página con Botones Desplegables</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,16 +22,103 @@
         button:hover {
             background-color: #45a049;
         }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .section {
+            display: none;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+        }
+        .active {
+            display: block;
+        }
     </style>
 </head>
 <body>
 
     <h1>Bienvenido a mi página web</h1>
-    <p>Haz clic en los botones para navegar:</p>
+    <p>Haz clic en los botones para ver diferentes secciones:</p>
 
-    <button onclick="window.location.href='pagina1.html';">Ir a Página 1</button>
-    <button onclick="window.location.href='pagina2.html';">Ir a Página 2</button>
-    <button onclick="window.location.href='pagina3.html';">Ir a Página 3</button>
+    <!-- Botón desplegable -->
+    <div class="dropdown">
+        <button class="dropbtn">Resumen y Diagrama</button>
+        <div class="dropdown-content">
+            <a href="javascript:void(0);" onclick="showSection('resumen')">Resumen</a>
+            <a href="javascript:void(0);" onclick="showSection('diagrama')">Diagrama</a>
+        </div>
+    </div>
+
+    <!-- Botones para las semanas -->
+    <button onclick="showSection('semana1')">Semana 1</button>
+    <button onclick="showSection('semana2')">Semana 2</button>
+    <button onclick="showSection('semana3')">Semana 3</button>
+
+    <!-- Secciones -->
+    <div id="resumen" class="section">
+        <h2>Resumen</h2>
+        <p>Este es el resumen. Aquí puedes colocar la información que deseas mostrar.</p>
+    </div>
+
+    <div id="diagrama" class="section">
+        <h2>Diagrama</h2>
+        <p>Este es el diagrama. Puedes colocar el diagrama aquí.</p>
+    </div>
+
+    <div id="semana1" class="section">
+        <h2>Semana 1</h2>
+        <p>Contenido de la Semana 1.</p>
+    </div>
+
+    <div id="semana2" class="section">
+        <h2>Semana 2</h2>
+        <p>Contenido de la Semana 2.</p>
+    </div>
+
+    <div id="semana3" class="section">
+        <h2>Semana 3</h2>
+        <p>Contenido de la Semana 3.</p>
+    </div>
+
+    <script>
+        // Función para mostrar la sección correspondiente
+        function showSection(section) {
+            // Ocultar todas las secciones
+            var sections = document.querySelectorAll('.section');
+            sections.forEach(function (section) {
+                section.classList.remove('active');
+            });
+
+            // Mostrar la sección seleccionada
+            var selectedSection = document.getElementById(section);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+        }
+    </script>
 
 </body>
 </html>
+
